@@ -1,9 +1,7 @@
-package jpabook.relationship;
+package jpabook.jpashop.relationship;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +19,11 @@ public class Team {
 
     @OneToMany(mappedBy = "team")
     private List<Member> members = new ArrayList<>();
+
+    @Builder
+    public Team(String name) {
+        this.name = name;
+    }
 
     public void addMember(Member member) {
         members.add(member);

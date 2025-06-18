@@ -1,4 +1,4 @@
-package jpabook.relationship;
+package jpabook.jpashop.relationship;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -27,8 +27,7 @@ public class Member {
     private Team team;
 
     @Builder
-    public Member(Long id, String name, Team team) {
-        this.id = id;
+    public Member(String name, Team team) {
         this.name = name;
         this.team = team;
     }
