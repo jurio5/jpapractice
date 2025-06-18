@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,8 +20,15 @@ public class Order {
     @Column(name = "ORDER_ID")
     private Long id;
 
-    @Column(name = "MEMBER_ID")
-    private Long memberId; // 관계형 DB를 객체에 맞춘 설계 , 객체 그래프 탐색이 불가능, 이는 객체 지향적이지 않음
+//    @Column(name = "MEMBER_ID")
+//    private Long memberId; // 관계형 DB를 객체에 맞춘 설계 , 객체 그래프 탐색이 불가능, 이는 객체 지향적이지 않음
+
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     private LocalDateTime orderDate;
 
