@@ -2,6 +2,7 @@ package jpabook.jpashop.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -29,6 +30,7 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
+    @Builder
     public Member(String name, String city, String street, String zipcode) {
         this.name = name;
         this.city = city;
