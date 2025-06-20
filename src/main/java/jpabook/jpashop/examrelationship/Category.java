@@ -1,6 +1,7 @@
 package jpabook.jpashop.examrelationship;
 
 import jakarta.persistence.*;
+import jpabook.jpashop.examrelationship.item.Item;
 
 import java.util.ArrayList;
 import java.util.List;
