@@ -1,9 +1,10 @@
 package jpabook.jpashop.examrelationship;
 
 import jakarta.persistence.*;
+import jpabook.jpashop.examrelationship.base.BaseEntity;
 
 @Entity
-public class Delivery {
+public class Delivery extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
