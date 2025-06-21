@@ -29,7 +29,8 @@ public class Member {
     @JoinColumn(name = "LOCKER_ID")
     private Locker locker;
 
-    @ManyToOne(fetch = FetchType.LAZY) // 지연 로딩의 경우 프록시 객체를 생성
+//    @ManyToOne(fetch = FetchType.LAZY) // 지연 로딩의 경우 프록시 객체를 생성
+    @ManyToOne(fetch = FetchType.EAGER) // Member 엔티티와 Team 엔티티를 같이 사용 할 상황이 많다면 EAGER 로 묶어서 사용
     @JoinColumn(name = "TEAM_ID") // ManyToOne 으로 연관관계 설정 시 자동으로 JoinColumn 에서 'TEAM_ID'를 생성해주지만, 명시
     private Team team;
 
