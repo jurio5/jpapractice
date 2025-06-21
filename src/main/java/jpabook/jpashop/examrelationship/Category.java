@@ -29,4 +29,7 @@ public class Category extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "ITEM_ID")
     )
     private List<Item> items = new ArrayList<>();
+
+    private void h1() {
+    }
 }
