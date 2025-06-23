@@ -8,6 +8,27 @@ public class ValueMain {
     public static void main(String[] args) {
     }
 
+    private static void equalsObjectType() {
+        Address address1 = new Address();
+        Address address2 = new Address();
+
+        System.out.println("address1 equals address2 : " + (address1.equals(address2)));
+    }
+
+    private static void identityObjectType() {
+        Address address1 = new Address();
+        Address address2 = new Address();
+
+        System.out.println("address1 == address2 : " + (address1 == address2));
+    }
+
+    private static void identityPrimitiveType() {
+        int a = 10;
+        int b = 10;
+
+        System.out.println("a == b : " + (a == b));
+    }
+
     private static void primitiveType() {
         int a = 10;
         int b = a;
