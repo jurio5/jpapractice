@@ -13,6 +13,9 @@ public class JPQLMain {
     EntityManager em;
 
     public static void main(String[] args) {
+    }
+
+    private static void nativeSQL() {
         em.createNativeQuery("select MEMBER_ID, city, street, zipcode, USERNAME from MEMBER")
                 .getResultList();
     }
