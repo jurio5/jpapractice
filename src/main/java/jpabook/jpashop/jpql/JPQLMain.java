@@ -16,6 +16,20 @@ public class JPQLMain {
     EntityManager em;
 
     public static void main(String[] args) {
+        Member member1 = Member.builder()
+                .name("member" + i)
+                .build();
+        em.persist(member1);
+
+        // 기존 타입에 ENUM 을 추가하려면 패키지를 포함하기에 불편
+//        em.createQuery("select m.name, 'HELLO', TRUE from Member m where m.memberType = jpabook.jpashop.jpql.MemberType.USER", Member.class);
+        // 이름 기반 파라미터 바인딩을 사용
+        em.createQuery("select m.name, 'HELLO', TRUE from Member m where m.memberType = :memberType", Member.class)
+                .setParameter("memberType", MemberType.ADMIN)
+                .getResultList();
+    }
+
+    private static void join() {
         Team team1 = Team.builder()
                 .name("teamA")
                 .build();
