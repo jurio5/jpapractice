@@ -20,8 +20,11 @@ public class JPQLMain {
                 .build();
         em.persist(member1);
 
-        List<Member> result = em.createQuery("select m from Member m", Member.class)
+        List<Object[]> resultList = em.createQuery("select m.name, m.age from Member m", Member.class)
                 .getResultList();
+
+        Object[] result = resultList.get(0);
+        System.out.println("username = " + result[0]);
     }
 
     private static void namedParameterBinding() {
