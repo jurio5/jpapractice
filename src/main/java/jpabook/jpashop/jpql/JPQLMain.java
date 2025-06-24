@@ -16,6 +16,25 @@ public class JPQLMain {
     EntityManager em;
 
     public static void main(String[] args) {
+        for (int i = 1; i <= 100; i++) {
+            Member member1 = Member.builder()
+                    .name("member" + i)
+                    .build();
+            em.persist(member1);
+        }
+
+        List<Member> result = em.createQuery("select m from Member m order by m.age desc", Member.class)
+                .setFirstResult(0)
+                .setMaxResults(10)
+                .getResultList();
+
+        System.out.println("result.size() = " + result.size());
+        for (Member member : result) {
+            System.out.println("member = " + member);
+        }
+    }
+
+    private static void newOperation() {
         Member member1 = Member.builder()
                 .name("member1")
                 .build();

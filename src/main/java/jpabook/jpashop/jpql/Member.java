@@ -30,4 +30,13 @@ public class Member {
         this.name = name;
         this.age = age;
     }
+
+    @Override
+    public String toString() { // toString 만들 때 연관관계(Team)는 지워줘야 함 (무한 루프 고려)
+        return "Member{" +
+                "age=" + age +
+                ", name='" + name + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }
