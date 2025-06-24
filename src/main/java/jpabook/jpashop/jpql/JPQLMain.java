@@ -1,6 +1,5 @@
 package jpabook.jpashop.jpql;
 
-import jakarta.persistence.Embedded;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
@@ -16,6 +15,23 @@ public class JPQLMain {
     EntityManager em;
 
     public static void main(String[] args) {
+        Member member1 = Member.builder()
+                .name("member" + i)
+                .build();
+        em.persist(member1);
+
+        String sql = "select " +
+                        "case when m.age <= 10 then '학생요금' " +
+                        "case when m.age >= 60 then '경로요금' " +
+                        "else '일반요금' " +
+                        "end " +
+                "from Member m";
+
+        em.createQuery(sql, String.class)
+                .getResultList();
+    }
+
+    private static void jpqlType() {
         Member member1 = Member.builder()
                 .name("member" + i)
                 .build();
