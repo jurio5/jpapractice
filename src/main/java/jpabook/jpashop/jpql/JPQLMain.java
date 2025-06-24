@@ -20,6 +20,18 @@ public class JPQLMain {
                 .build();
         em.persist(member1);
 
+        TypedQuery<jpabook.jpashop.jpql.Member> query = em.createQuery("select m from Member m where m.name = :name", jpabook.jpashop.jpql.Member.class);
+        query.setParameter("name", "member1");
+        jpabook.jpashop.jpql.Member result = query.getSingleResult();
+        System.out.println("result.getName() = " + result.getName());
+    }
+
+    private static void singleResult() {
+        Member member1 = Member.builder()
+                .name("member1")
+                .build();
+        em.persist(member1);
+
         TypedQuery<jpabook.jpashop.jpql.Member> query = em.createQuery("select m from Member m", jpabook.jpashop.jpql.Member.class);
 
         jpabook.jpashop.jpql.Member result = query.getSingleResult(); // PK를 통해 하나의 결과를 가져올 때 사용 (where id = :id)
