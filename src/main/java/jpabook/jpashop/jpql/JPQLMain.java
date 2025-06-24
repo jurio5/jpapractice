@@ -13,6 +13,8 @@ public class JPQLMain {
     EntityManager em;
 
     public static void main(String[] args) {
+        em.createNativeQuery("select MEMBER_ID, city, street, zipcode, USERNAME from MEMBER")
+                .getResultList();
     }
 
     private static void criteria() {
