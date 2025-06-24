@@ -16,6 +16,21 @@ public class JPQLMain {
     EntityManager em;
 
     public static void main(String[] args) {
+        Team team1 = Team.builder()
+                .name("teamA")
+                .build();
+        em.persist(team1);
+
+        Member member1 = Member.builder()
+                .name("member" + i)
+                .build();
+        em.persist(member1);
+
+        // where t.name = :name 이름 기반 바인딩을 사용하거나 내부 조인 시 select 부분을 t 로 받아 team 을 사용
+        List<Member> result = em.createQuery("select t from Member m join m.team t", Member.class);
+    }
+
+    private static void pagingAPI() {
         for (int i = 1; i <= 100; i++) {
             Member member1 = Member.builder()
                     .name("member" + i)
