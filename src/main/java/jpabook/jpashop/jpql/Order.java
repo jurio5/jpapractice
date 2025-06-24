@@ -6,26 +6,28 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Team {
+@Table(name = "ORDERS")
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private int orderAmount;
 
-    @OneToMany(mappedBy = "team")
-    private List<Member> members = new ArrayList<>();
+    @Embedded
+    private Address address;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PRODUCT_ID")
+    private Product product;
 
     @Builder(access = AccessLevel.PUBLIC)
-    private Team(Long id, String name) {
+    private Order(Long id, int orderAmount) {
         this.id = id;
-        this.name = name;
+        this.orderAmount = orderAmount;
     }
 }

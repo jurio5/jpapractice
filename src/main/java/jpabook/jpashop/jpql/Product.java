@@ -1,18 +1,18 @@
 package jpabook.jpashop.jpql;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Team {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,12 +20,15 @@ public class Team {
 
     private String name;
 
-    @OneToMany(mappedBy = "team")
-    private List<Member> members = new ArrayList<>();
+    private int price;
+
+    private int stockAmount;
 
     @Builder(access = AccessLevel.PUBLIC)
-    private Team(Long id, String name) {
+    private Product(Long id, String name, int price, int stockAmount) {
         this.id = id;
         this.name = name;
+        this.price = price;
+        this.stockAmount = stockAmount;
     }
 }
