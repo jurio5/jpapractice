@@ -20,6 +20,27 @@ public class JPQLMain {
                 .build();
         em.persist(member1);
 
+        // concat
+//        String sql = "select concat('a', 'b') from Member m";
+//        String sql = "select 'a' || 'b' from Member m"; // hibernate 에서 지원하는 concat 방식
+
+        // substring
+//        String sql = "select substring(m.name, 2, 3) from Member m";
+
+        // locate
+//        String sql = "select locate('de','abcdef') from Member m"; // Integer 타입으로 반환해야 함, SQL 은 1-based 방식이라 1부터 시작
+
+        // size
+//        String sql = "select size(t.members) from Team t";
+        em.createQuery(sql, String.class);
+    }
+
+    private static void nullif() {
+        Member member1 = Member.builder()
+                .name("member" + i)
+                .build();
+        em.persist(member1);
+
         String sql = "select nullif(m.name, '관리자') as username from Member m";
         em.createQuery(sql, String.class)
                 .getResultList();
