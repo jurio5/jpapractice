@@ -20,6 +20,15 @@ public class JPQLMain {
                 .build();
         em.persist(member1);
 
+        em.createQuery("select o.address from Order o", Address.class);
+    }
+
+    private static void objectArray() {
+        Member member1 = Member.builder()
+                .name("member1")
+                .build();
+        em.persist(member1);
+
         List<Object[]> resultList = em.createQuery("select m.name, m.age from Member m", Member.class)
                 .getResultList();
 
