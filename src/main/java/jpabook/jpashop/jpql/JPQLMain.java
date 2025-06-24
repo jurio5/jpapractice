@@ -20,6 +20,16 @@ public class JPQLMain {
                 .build();
         em.persist(member1);
 
+        List<Member> result = em.createQuery("select m from Member m", Member.class)
+                .getResultList();
+    }
+
+    private static void namedParameterBinding() {
+        Member member1 = Member.builder()
+                .name("member1")
+                .build();
+        em.persist(member1);
+
         TypedQuery<jpabook.jpashop.jpql.Member> query = em.createQuery("select m from Member m where m.name = :name", jpabook.jpashop.jpql.Member.class);
         query.setParameter("name", "member1");
         jpabook.jpashop.jpql.Member result = query.getSingleResult();
