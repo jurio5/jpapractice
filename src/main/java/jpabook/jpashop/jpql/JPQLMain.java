@@ -1,5 +1,6 @@
 package jpabook.jpashop.jpql;
 
+import jakarta.persistence.Embedded;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
@@ -15,6 +16,20 @@ public class JPQLMain {
     EntityManager em;
 
     public static void main(String[] args) {
+        Member member1 = Member.builder()
+                .name("member1")
+                .build();
+        em.persist(member1);
+
+        List<MemberDTO> result = em.createQuery("select new jpabook.jpashop.jpql.MemberDTO(m.name, m.age) from Member m", MemberDTO.class)
+                .getResultList();
+
+        MemberDTO memberDTO = result.get(0);
+        System.out.println("memberDTO = " + memberDTO.getUsername());
+        System.out.println("memberDTO = " + memberDTO.getAge());
+    }
+
+    private static void Embedded() {
         Member member1 = Member.builder()
                 .name("member1")
                 .build();
