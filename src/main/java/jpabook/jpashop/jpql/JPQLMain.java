@@ -1,6 +1,8 @@
 package jpabook.jpashop.jpql;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
@@ -13,6 +15,14 @@ public class JPQLMain {
     EntityManager em;
 
     public static void main(String[] args) {
+        Member member1 = Member.builder()
+                .name("member1")
+                .build();
+        em.persist(member1);
+
+        TypedQuery<jpabook.jpashop.jpql.Member> query1 = em.createQuery("select m from Member m", jpabook.jpashop.jpql.Member.class); // 타입이 명확한 경우들
+        TypedQuery<String> query2 = em.createQuery("select m.name from Member m", String.class); // 타입이 명확한 경우들
+        Query query3 = em.createQuery("select m.name, m.age from Member m"); // 타입이 명확하지 않을 때
     }
 
     private static void nativeSQL() {
