@@ -20,9 +20,20 @@ public class JPQLMain {
                 .build();
         em.persist(member1);
 
+        String sql = "select coalesce(m.name, '이름 없는 회원') as username from Member m";
+        em.createQuery(sql, String.class)
+                .getResultList();
+    }
+
+    private static void defaultCase() {
+        Member member1 = Member.builder()
+                .name("member" + i)
+                .build();
+        em.persist(member1);
+
         String sql = "select " +
                         "case when m.age <= 10 then '학생요금' " +
-                        "case when m.age >= 60 then '경로요금' " +
+                        "when m.age >= 60 then '경로요금' " +
                         "else '일반요금' " +
                         "end " +
                 "from Member m";
