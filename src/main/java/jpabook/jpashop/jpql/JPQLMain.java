@@ -20,6 +20,17 @@ public class JPQLMain {
                 .build();
         em.persist(member1);
 
+        String sql = "select nullif(m.name, '관리자') as username from Member m";
+        em.createQuery(sql, String.class)
+                .getResultList();
+    }
+
+    private static void coalesces() {
+        Member member1 = Member.builder()
+                .name("member" + i)
+                .build();
+        em.persist(member1);
+
         String sql = "select coalesce(m.name, '이름 없는 회원') as username from Member m";
         em.createQuery(sql, String.class)
                 .getResultList();
