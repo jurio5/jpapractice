@@ -20,6 +20,17 @@ public class JPQLMain {
                 .build();
         em.persist(member1);
 
+        TypedQuery<jpabook.jpashop.jpql.Member> query = em.createQuery("select m from Member m", jpabook.jpashop.jpql.Member.class);
+
+        jpabook.jpashop.jpql.Member result = query.getSingleResult(); // PK를 통해 하나의 결과를 가져올 때 사용 (where id = :id)
+    }
+
+    private static void queryAndTypeQuery() {
+        Member member1 = Member.builder()
+                .name("member1")
+                .build();
+        em.persist(member1);
+
         TypedQuery<jpabook.jpashop.jpql.Member> query1 = em.createQuery("select m from Member m", jpabook.jpashop.jpql.Member.class); // 타입이 명확한 경우들
         TypedQuery<String> query2 = em.createQuery("select m.name from Member m", String.class); // 타입이 명확한 경우들
         Query query3 = em.createQuery("select m.name, m.age from Member m"); // 타입이 명확하지 않을 때
