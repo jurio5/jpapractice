@@ -6,6 +6,10 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
+@NamedQuery(
+        name = "Member.findByUsername", // 관례 상 엔티티 명.XXX 로 사용
+        query = "select m from Member m where m.name = :name"
+)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
 

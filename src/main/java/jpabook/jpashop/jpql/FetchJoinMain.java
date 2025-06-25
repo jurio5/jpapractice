@@ -28,6 +28,35 @@ public class FetchJoinMain {
         em.flush();
         em.clear();
 
+        List<Member> resultList = em.createNamedQuery("Member.findByUsername", Member.class)
+                .setParameter("name", "회원1")
+                .getResultList();
+
+        for (Member member : resultList) {
+            System.out.println("member = " + member);
+        }
+    }
+
+    private static void pkKey() {
+        Team teamA = new Team();
+        teamA.setName("팀A");
+        em.persist(teamA);
+
+        Team teamB = new Team();
+        teamB.setName("팀B");
+        em.persist(teamB);
+
+        Member member1 = new Member();
+        member1.setTeam(teamA);
+        em.persist(member1);
+
+        Member member2 = new Member();
+        member2.setTeam(teamB);
+        em.persist(member2);
+
+        em.flush();
+        em.clear();
+
         String query = "select m from Member m where m = :member";
 
         Member findMember = em.createQuery(query, Member.class)
